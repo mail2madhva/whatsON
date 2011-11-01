@@ -128,7 +128,7 @@ import android.widget.ImageView.ScaleType;
         }
 
         private static boolean boolVal = false;
-        public void notifyFacebookApp(boolean updating) {
+        public void notifyFacebookApp(boolean updating, final boolean isFriendsData) {
         	
         	if (updating) {
         		boolVal = true;
@@ -136,8 +136,13 @@ import android.widget.ImageView.ScaleType;
     				public void run() {
     					
     	    				Log.w(TAG, "FriendsGetMovies.remainingFriends="+FriendsGetMovies.remainingFriends);
-        	    			String str = getString(R.string.updateMessage);
-    						pageTitle.setText(str + " " + (FriendsGetMovies.NUM_OF_FRIENDS - (FriendsGetMovies.totalFriends - FriendsGetMovies.remainingFriends)));
+    	    				String str = null;
+    	    				if (isFriendsData)
+    	    					str = getString(R.string.updateMessage) + " " + (FriendsGetMovies.NUM_OF_FRIENDS - (FriendsGetMovies.totalFriends - FriendsGetMovies.remainingFriends));
+    	    				else 
+    	    					str = getString(R.string.updateMoviesMsg) + " " + (FriendsGetMovies.NUM_OF_FRIENDS - FriendsGetMovies.detailsMoviesCtr);
+	
+    						pageTitle.setText(str);
     				}
     			});
     		} 

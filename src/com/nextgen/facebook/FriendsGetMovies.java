@@ -23,7 +23,7 @@ public class FriendsGetMovies {
     static int movieCounter=0;
     public static int totalFriends=0;
     static int totalMovies=0;
-    static int detailsMoviesCtr=0;
+    public static int detailsMoviesCtr=0;
     public static int remainingFriends=0;
     public static final int MAX_MOVIES  = 200;
     public static final int NUM_OF_FRIENDS = 20;
@@ -81,7 +81,7 @@ public class FriendsGetMovies {
 		public void inProgress(boolean value) {
 			
 			if (value) {
-				FacebookFragment.f.notifyFacebookApp(value);
+				FacebookFragment.f.notifyFacebookApp(value, true);
 			}
 		}
     }
@@ -151,7 +151,7 @@ public class FriendsGetMovies {
 		@Override
 		public void inProgress(boolean value) {
 			if (value) {
-				FacebookFragment.f.notifyFacebookApp(value);
+				FacebookFragment.f.notifyFacebookApp(value, true);
 			}
 		}
 
@@ -221,8 +221,12 @@ public class FriendsGetMovies {
 		public void inProgress(boolean value) {
             Log.w(TAG, " value: "+ value + "  ,remainingFriends = "+ remainingFriends +
             		" totalFriends-remainingFriends="+(totalFriends-remainingFriends) + " detailsMoviesCtr= "+detailsMoviesCtr);
-			if (!value && totalFriends-remainingFriends == NUM_OF_FRIENDS && detailsMoviesCtr == (NUM_OF_FRIENDS-1)) {
-				FacebookFragment.f.notifyFacebookApp(value);
+			if (value)
+			{
+				FacebookFragment.f.notifyFacebookApp(value, false);
+			}
+			else if (!value && totalFriends-remainingFriends == NUM_OF_FRIENDS && detailsMoviesCtr == (NUM_OF_FRIENDS-1)) {
+				FacebookFragment.f.notifyFacebookApp(value, false);
 			}
 			
 		}

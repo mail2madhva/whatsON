@@ -166,10 +166,7 @@ import android.widget.Toast;
                    intent.putExtra("VIDEO_ID", mYouTubeVideoId); 
                    startActivity(intent); 
             } 
-            else if (arg0.getId() == R.id.imageView1)
-            {
-             MainActivity.fgm.RequestFriendList();
-            }
+           
             else if (arg0.getId() == R.id.details_set_reminder)
             {
                 //set up dialog
